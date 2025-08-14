@@ -1,1 +1,9 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/home-zoom-parallax.html" }] }
+{
+  "version": 2,
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "assets/**", "use": "@vercel/static" },
+    { "src": "fav/**", "use": "@vercel/static" },
+    { "src": "img/**", "use": "@vercel/static" }
+  ]
+}
