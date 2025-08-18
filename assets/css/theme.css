@@ -8156,11 +8156,17 @@ zoom-image-head
   margin-bottom: 5vh;
 }
 
+
 .zoom-image-head__text {
   font-size: 18px;
   line-height: 1.222222222222222;
-  color: #a78b6c;
+  color: #fcecdb;
   line-height: 1.666666666666667;
+   display: inline-block;
+  padding: 8px 15px;
+  border: 1px solid rgba(0,0,0,0.4);   /* borda preta com leve transparência */
+  background-color: rgba(0,0,0,0.2);    /* fundo preto translúcido */
+  border-radius: 4px;   
 }
 
 .zoom-image-head__icon {
