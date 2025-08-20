@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="R6MOZ; Design funcional, excelência artesanal" name="description">
-  <meta content="Paul, Logan Cee, Mikhail Ojereliev" name="author">
+  <meta content="Ronin Artist" name="author">
   <title>R6MOZ</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Teko:300,400" rel="stylesheet">
   
@@ -446,12 +446,7 @@
               <br>, Armazém Nº 6.
 
               </p>
-              <p>
-                <a href="tel:+00853462188">+258 86 0000 0000</a>
-              </p>
-              <p>
-                <a href="mailto:infor@arquito.com">infor@r6moz.com</a>
-              </p>
+            
             </div>
             <a class="contact-block__link" href="https://www.google.com/maps?ll=-25.969765,32.572984&z=17&t=m&hl=pt-PT&gl=MZ&mapclient=embed&q=396+Avenida+Samora+Machel+Maputo"> Direção do Mapa
               <span class="contact-block__link-icon icon-chevron-right"></span>
@@ -459,22 +454,24 @@
           </div>
           <div class="col-12 col-lg-7">
             <div class="heading-smallest heading-smallest heading-smallest_has-offset heading-smallest heading-smallest_size_small">ENTRE EM CONTACTO</div>
-            <form class="contact-block__form">
-              <div class="row">
-                <div class="col-12 col-sm-6">
-                  <input class="contact-block__input-text" placeholder="Nome" type="text"/>
-                </div>
-                <div class="col-12 col-sm-6">
-                  <input class="contact-block__input-text" placeholder="Assunto" type="text"/>
-                </div>
-                <div class="col-12">
-                  <textarea class="contact-block__input-textarea" placeholder="Escrve a sua mensagem aqui"></textarea>
-                  <button class="contact-block__submit">Enviar Mensagem
-                    <span class="contact-block__submit-icon icofont-caret-right"></span>
-                  </button>
-                </div>
-              </div>
-            </form>
+            <form class="contact-block__form" id="contactForm">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <input class="contact-block__input-text" name="nome"     placeholder="Nome"    type="text" required>
+    </div>
+    <div class="col-12 col-sm-6">
+      <input class="contact-block__input-text" name="assunto"  placeholder="Assunto" type="text" required>
+    </div>
+    <div class="col-12">
+      <textarea class="contact-block__input-textarea" name="mensagem" placeholder="Escreve a sua mensagem aqui" required></textarea>
+      <button class="contact-block__submit" type="submit">Enviar Mensagem
+        <span class="contact-block__submit-icon icofont-caret-right"></span>
+      </button>
+    </div>
+  </div>
+</form>
+<div id="formResponse"></div>
+
           </div>
         </div>
       </div>
@@ -487,15 +484,14 @@
       </div>
       <div class="row">
         <div class="footer-default__column col-12 col-sm-6 col-md-3">
-          <div class="footer-default__group-title">empresa</div>
-          <p>396 Avenida Samora Machel,
-            <br/>
-           Armazém Nº 6.
-          </p>
+          <div class="footer-default__group-title">PARCEIRO</div>
+          
           <p>
-            <a href="mailto:infor@arquito.com">info@r6moz.com</a>
-          </p>
-          <p>+258 86 85 888 6263</p>
+          <div class="footer-default__partner">
+    <img src="assets/img/partner-logo.png" alt="Parceiro" style="max-width:150px; margin-top:10px;">
+  </div>
+          
+           
         </div>
             <div class="footer-default__column col-12 col-sm-6 col-md-3">
           <div class="footer-default__group-title">Links Rápidos</div>
@@ -569,6 +565,26 @@
     <script src="assets/js/lightbox.min.js"></script>
     <!-- Custom js -->
     <script src="assets/js/main.js"></script>
+    <script>
+$('#contactForm').on('submit', function(e){
+  e.preventDefault();
+
+  $.ajax({
+    url: 'sendmail.php',
+    type: 'POST',
+    data: $(this).serialize(),
+    success: function(response){
+      if(response.trim() === "success") {
+        $('#formResponse').text("Mensagem enviada com sucesso!");
+        $('#contactForm')[0].reset();
+      } else {
+        $('#formResponse').text("Ocorreu um erro, tente novamente.");
+      }
+    }
+  });
+});
+</script>
+
 </body>
 
 </html>
